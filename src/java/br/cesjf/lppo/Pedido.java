@@ -8,8 +8,8 @@ public class Pedido {
     private int pedido;
     private String dono;
     private float valor;
-    private String texto;
-    private Date data;
+    private String nome;
+    private Date atualizacao;
     
 
     public Pedido() {
@@ -47,20 +47,20 @@ public class Pedido {
         this.valor = valor;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setNome(String texto) {
+        this.nome = texto;
     }
 
-    public Date getData() {
-        return data;
+    public Date getAtualizacao() {
+        return atualizacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setAtualizacao(Date data) {
+        this.atualizacao = data;
     }
 
 }
