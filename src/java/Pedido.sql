@@ -4,5 +4,5 @@ CREATE TABLE Pedido(
     dono VARCHAR(50) NOT NULL,
     valor REAL NOT NULL,
     nome VARCHAR(50) NOT NULL,
-    atualizacao TIMESTAMP NOT NULL
+    atualizacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
