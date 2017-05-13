@@ -28,7 +28,7 @@ public class PedidoDAO {
                novoPedido.setId(resultado.getLong("id"));
                novoPedido.setPedido(resultado.getInt("pedido"));
                novoPedido.setDono(resultado.getString("dono"));
-               novoPedido.setValor(resultado.getFloat("real"));
+               novoPedido.setValor(resultado.getFloat("valor"));
                novoPedido.setNome(resultado.getString("nome"));
                novoPedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
                pedidos.add(novoPedido);

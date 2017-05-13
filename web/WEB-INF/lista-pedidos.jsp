@@ -26,7 +26,7 @@
                     <td>${pedido.id}</td>
                     <td>${pedido.pedido}</td>
                     <td>${pedido.dono}</td>
-                    <td>${pedido.real}</td>
+                    <td>${pedido.valor}</td>
                     <td>${pedido.nome}</td>
                     <td>${pedido.atualizacao}</td>
                 </tr>
