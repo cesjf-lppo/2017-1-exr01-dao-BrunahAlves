@@ -7,6 +7,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="JSPF/Menu.jspf" %>
         <h1>Lista de Pedidos</h1>
         <div style="color: red;">${mensagem}</div>
         <table>
@@ -15,7 +16,7 @@
                 <th>ID</th>
                 <th>Pedido</th>
                 <th>Dono</th>
-                <th>Real</th>
+                <th>Valor</th>
                 <th>Nome</th>
                 <th>Última atualização</th>
                 </tr>
