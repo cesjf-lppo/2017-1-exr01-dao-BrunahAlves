@@ -1,3 +1,10 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<h2>Hello World!</h2>
+<nav>
+<h2>Pedidos!</h2>
+<ul>
+    <li><a href="listar.html">Listar</a></li>
+    <li><a href="novo.html">Novo</a></li>
+    
+</ul>
+</nav>
