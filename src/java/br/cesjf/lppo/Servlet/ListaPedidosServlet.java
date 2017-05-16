@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/listar.html"})
 public class ListaPedidosServlet extends HttpServlet {
 
- 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
