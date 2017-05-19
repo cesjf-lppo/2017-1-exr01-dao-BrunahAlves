@@ -32,7 +32,12 @@ public class EditaPedidoServlet extends HttpServlet {
 
             PedidoDAO dao = new PedidoDAO();
             Pedido pedido = dao.getById(id);
-            request.setAttribute("pedido", pedido);
+            if (pedido == null){
+                
+                System.out.println(id+"teste");
+            }
+            request.setAttribute("pedido", pedido); 
+           
             request.getRequestDispatcher("WEB-INF/editar-pedido.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
@@ -46,17 +51,20 @@ public class EditaPedidoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
             Long id = Long.parseLong(request.getParameter("id"));
 
             PedidoDAO dao = new PedidoDAO();
             Pedido pedido = dao.getById(id);
+            System.out.println(pedido.getDono());
 
             pedido.setPedido(Integer.parseInt(request.getParameter("pedido")));
             pedido.setDono(request.getParameter("dono"));
             pedido.setValor(Float.parseFloat(request.getParameter("valor")));
             pedido.setNome(request.getParameter("nome"));
-            dao.atualiza(pedido);
+          
+dao.atualiza(pedido);
             response.sendRedirect("listar.html");
           
 
