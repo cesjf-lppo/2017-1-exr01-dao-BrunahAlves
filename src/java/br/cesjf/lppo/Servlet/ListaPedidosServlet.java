@@ -1,4 +1,3 @@
-
 package br.cesjf.lppo.Servlet;
 
 import br.cesjf.lppo.DAO.PedidoDAO;
@@ -19,25 +18,57 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alunoces
  */
-@WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/listar.html"})
+@WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/listar.html", "/listarPedido.html", "listarDono.html"})
 public class ListaPedidosServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Pedido> pedidos;
-        
-         try {
-           PedidoDAO dao = new PedidoDAO();
-            pedidos = dao.listAll();
-        } catch (Exception ex) {
-            Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            pedidos = new ArrayList<>();
-            request.setAttribute("mensagem", ex.getLocalizedMessage());
-        }
-        
-        request.setAttribute("pedidos", pedidos);
-        request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
-    }
+        if (request.getRequestURI().contains("/listar.html")) {
 
+            List<Pedido> pedidos;
+
+            try {
+                PedidoDAO dao = new PedidoDAO();
+                pedidos = dao.listAll();
+            } catch (Exception ex) {
+                Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                pedidos = new ArrayList<>();
+                request.setAttribute("mensagem", ex.getLocalizedMessage());
+            }
+
+            request.setAttribute("pedidos", pedidos);
+            request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
+        } else if (request.getRequestURI().contains("/listarPedido.html")) {
+
+            List<Pedido> pedidos;
+
+            try {
+                PedidoDAO dao = new PedidoDAO();
+                pedidos = dao.listAll();
+            } catch (Exception ex) {
+                Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                pedidos = new ArrayList<>();
+                request.setAttribute("mensagem", ex.getLocalizedMessage());
+            }
+
+            request.setAttribute("pedidos", pedidos);
+            request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
+        } else if (request.getRequestURI().contains("/listarDono.html")) {
+
+            List<Pedido> pedidos;
+
+            try {
+                PedidoDAO dao = new PedidoDAO();
+                pedidos = dao.listAll();
+            } catch (Exception ex) {
+                Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                pedidos = new ArrayList<>();
+                request.setAttribute("mensagem", ex.getLocalizedMessage());
+            }
+
+            request.setAttribute("pedidos", pedidos);
+            request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
+        }
+    }
 }

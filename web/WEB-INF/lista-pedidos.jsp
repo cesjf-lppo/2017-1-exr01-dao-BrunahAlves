@@ -24,11 +24,9 @@
             <tbody>
                 <c:forEach var="pedido" items="${pedidos}">    
                 <tr>
-                    <td><a href="Editar.html?id=${pedido.id}">${pedido.id}</a></td>
-                    <td>${pedido.pedido}</td>
-                    <td>${pedido.dono}</td>
+                    <td><a href="listarPedido.html?id=${pedido.pedido}">${pedido.pedido}</a></td>
+                    <td><a href="listarDono.html?id=${pedido.dono}">${pedido.dono}</a></td>
                     <td>${pedido.valor}</td>
-                    <td>${pedido.nome}</td>
                     <td>${pedido.atualizacao}</td>
                 </tr>
                 </c:forEach>
