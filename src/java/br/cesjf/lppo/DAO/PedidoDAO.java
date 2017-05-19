@@ -14,6 +14,8 @@ public class PedidoDAO {
     private final PreparedStatement opNovo;
     private final PreparedStatement opAtualiza;
     private final PreparedStatement opBuscaPorId;
+    private final PreparedStatement opBuscaPorPedido;
+    private final PreparedStatement opBuscaPorDono;
 
     public PedidoDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
@@ -21,6 +23,8 @@ public class PedidoDAO {
         opNovo = conexao.prepareStatement("INSERT INTO Pedido(Pedido, Dono, Valor, Nome) VALUES(?,?,?,?)");
         opAtualiza = conexao.prepareStatement("UPDATE Pedido SET Pedido = ?, Dono = ?, Valor=?, Nome=? WHERE id = ?");
         opBuscaPorId = conexao.prepareStatement("SELECT * FROM Pedido WHERE id = ?");
+        opBuscaPorPedido = conexao.prepareStatement("SELECT * FROM Pedido WHERE pedido = ?"); 
+        opBuscaPorDono = conexao.prepareStatement("SELECT * FROM Pedido WHERE dono = ?"); 
     }
 
     public List<Pedido> listAll() throws Exception {
@@ -47,6 +51,54 @@ public class PedidoDAO {
         }
     }
 
+        public List<Pedido> listPedidos() throws Exception {
+        try {
+            List<Pedido> pedidos = new ArrayList<>();
+
+            ResultSet resultado = opBuscaPorPedido.executeQuery();
+
+            while (resultado.next()) {
+                Pedido novoPedido = new Pedido();
+
+                novoPedido.setId(resultado.getLong("id"));
+                novoPedido.setPedido(resultado.getInt("pedido"));
+                novoPedido.setDono(resultado.getString("dono"));
+                novoPedido.setValor(resultado.getFloat("valor"));
+                novoPedido.setNome(resultado.getString("nome"));
+                novoPedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
+                pedidos.add(novoPedido);
+            }
+            return pedidos;
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao listar os pedidos no banco!", ex);
+        }
+    }
+ 
+            public List<Pedido> listDono() throws Exception {
+        try {
+            List<Pedido> pedidos = new ArrayList<>();
+
+            ResultSet resultado = opBuscaPorDono.executeQuery();
+
+            while (resultado.next()) {
+                Pedido novoPedido = new Pedido();
+
+                novoPedido.setId(resultado.getLong("id"));
+                novoPedido.setPedido(resultado.getInt("pedido"));
+                novoPedido.setDono(resultado.getString("dono"));
+                novoPedido.setValor(resultado.getFloat("valor"));
+                novoPedido.setNome(resultado.getString("nome"));
+                novoPedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
+                pedidos.add(novoPedido);
+            }
+            return pedidos;
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao listar os pedidos no banco!", ex);
+        }
+    }
+            
         public Pedido getById(Long id) throws Exception {
         try {
             Pedido pedido = null;
