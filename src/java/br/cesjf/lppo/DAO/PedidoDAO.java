@@ -52,17 +52,18 @@ public class PedidoDAO {
             Pedido pedido = null;
             opBuscaPorId.clearParameters();
             opBuscaPorId.setLong(1, id);
+            
             ResultSet resultado = opBuscaPorId.executeQuery();
 
             if (resultado.next()) {
-                Pedido novoPedido = new Pedido();
+                pedido = new Pedido();
 
-                novoPedido.setId(resultado.getLong("id"));
-                novoPedido.setPedido(resultado.getInt("pedido"));
-                novoPedido.setDono(resultado.getString("dono"));
-                novoPedido.setValor(resultado.getFloat("valor"));
-                novoPedido.setNome(resultado.getString("nome"));
-                novoPedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
+                pedido.setId(resultado.getLong("id"));
+                pedido.setPedido(resultado.getInt("pedido"));
+                pedido.setDono(resultado.getString("dono"));
+                pedido.setValor(resultado.getFloat("valor"));
+                pedido.setNome(resultado.getString("nome"));
+                pedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
             }
             return pedido;
 
