@@ -15,7 +15,7 @@
         <%@include file="JSPF/Menu.jspf" %>
         <h1>Editar pedido!</h1>
          <div style="color: red;">${mensagem}</div>
-        <form method="post">
+        <form method="post" action="Editar.html">
             <input type="hidden" name="id" value="${pedido.id}"/>
             <div><label> Pedido <input type="text" name="pedido" placeholder="Digite o pedido" value="${pedido.pedido}"/></label></div>
             <div><label> Dono: <input type="text" name="dono" placeholder="Digite o dono" value="${pedido.dono}" /></label></div>
