@@ -3,7 +3,7 @@ package br.cesjf.lppo;
 import java.util.Date;
 
 
-public class Pedido {
+public class Itens {
     private Long Id;
     private int pedido;
     private String dono;
@@ -12,7 +12,7 @@ public class Pedido {
     private Date atualizacao;
     
 
-    public Pedido() {
+    public Itens() {
     }
 
     public Long getId() {

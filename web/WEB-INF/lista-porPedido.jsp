@@ -12,6 +12,23 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="JSPF/Menu.jspf" %>
+        <h1>Lista de Pedidos</h1>
+        <div style="color: red;">${mensagem}</div>
+        <table>
+            <thead>
+                <tr>
+                <th>Pedido</th>
+                <th>Valor Total</th>
+                </tr>
+            </thead>    
+            <tbody>
+                <c:forEach var="pedido" items="${pedidos}">    
+                <tr>
+                    <td><a href="listarPedido.html?id=${pedido.pedido}">${pedido.pedido}</a></td>
+                    <td>${pedido.valor}</td>
+                </tr>
+                </c:forEach>
+            </tbody>
     </body>
 </html>

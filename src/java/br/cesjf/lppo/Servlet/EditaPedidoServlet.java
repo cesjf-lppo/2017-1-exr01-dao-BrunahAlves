@@ -6,7 +6,7 @@
 package br.cesjf.lppo.Servlet;
 
 import br.cesjf.lppo.DAO.PedidoDAO;
-import br.cesjf.lppo.Pedido;
+import br.cesjf.lppo.Itens;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -31,48 +31,47 @@ public class EditaPedidoServlet extends HttpServlet {
             Long id = Long.parseLong(request.getParameter("id"));
 
             PedidoDAO dao = new PedidoDAO();
-            Pedido pedido = dao.getById(id);
-            if (pedido == null){
-                
-                System.out.println(id+"teste");
+            Itens pedido = dao.getByItens(id);
+            if (pedido == null) {
+
+                System.out.println(id + "teste");
             }
-            request.setAttribute("pedido", pedido); 
-           
+            request.setAttribute("pedidoItens", pedido);
+
             request.getRequestDispatcher("WEB-INF/editar-pedido.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendRedirect("listar.html");
+            response.sendRedirect("listarItens.html");
         } catch (Exception ex) {
             Logger.getLogger(EditaPedidoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("listar.html");
+            response.sendRedirect("listarItens.html");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             Long id = Long.parseLong(request.getParameter("id"));
 
             PedidoDAO dao = new PedidoDAO();
-            Pedido pedido = dao.getById(id);
+            Itens pedido = dao.getByItens(id);
             System.out.println(pedido.getDono());
 
             pedido.setPedido(Integer.parseInt(request.getParameter("pedido")));
             pedido.setDono(request.getParameter("dono"));
             pedido.setValor(Float.parseFloat(request.getParameter("valor")));
             pedido.setNome(request.getParameter("nome"));
-          
-dao.atualiza(pedido);
-            response.sendRedirect("listar.html");
-          
+
+            dao.atualiza(pedido);
+            response.sendRedirect("listarItens.html");
 
         } catch (NumberFormatException e) {
-            response.sendRedirect("listar.html");
+            response.sendRedirect("listarItens.html");
         } catch (Exception ex) {
             Logger.getLogger(EditaPedidoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("listar.html");
+            response.sendRedirect("listarItens.html");
         }
     }
 

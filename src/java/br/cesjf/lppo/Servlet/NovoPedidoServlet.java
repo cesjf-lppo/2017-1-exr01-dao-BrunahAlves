@@ -2,7 +2,7 @@
 package br.cesjf.lppo.Servlet;
 
 import br.cesjf.lppo.DAO.PedidoDAO;
-import br.cesjf.lppo.Pedido;
+import br.cesjf.lppo.Itens;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,7 +29,7 @@ public class NovoPedidoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Pedido novoPedido = new Pedido();
+        Itens novoPedido = new Itens();
         
         novoPedido.setPedido(Integer.parseInt(request.getParameter("pedido")));
         novoPedido.setDono(request.getParameter("dono"));
@@ -45,7 +45,7 @@ public class NovoPedidoServlet extends HttpServlet {
             return;
         }
         
-        response.sendRedirect("listar.html");
+        response.sendRedirect("listarItens.html");
     }
 
 }
