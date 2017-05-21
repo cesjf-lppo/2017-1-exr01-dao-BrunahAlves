@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Bruna Alves
  */
-@WebServlet(name = "ListaDadosServlet", urlPatterns = {"/listaPedido.html", "/listarItemPedido.html"})
+@WebServlet(name = "ListaDadosServlet", urlPatterns = {"/listaPedido.html", "/listarItemPedido.html", "/listaDono.html"})
 public class ListaDadosServlet extends HttpServlet {
 
     @Override
@@ -56,6 +56,21 @@ public class ListaDadosServlet extends HttpServlet {
 
             request.setAttribute("Itenspedido", Itenspedido);
             request.getRequestDispatcher("WEB-INF/lista-itensPorPedido.jsp").forward(request, response);
+        } else if (request.getRequestURI().contains("/listaDono.html")) {
+            List<Item> pedidos;
+
+            try {
+                ItemDAO dao = new ItemDAO();
+                pedidos = dao.listByDono();
+
+            } catch (Exception ex) {
+                Logger.getLogger(ListaDadosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                pedidos = new ArrayList<>();
+                request.setAttribute("mensagem", ex.getLocalizedMessage());
+            }
+
+            request.setAttribute("pedidos", pedidos);
+            request.getRequestDispatcher("WEB-INF/lista-porDono.jsp").forward(request, response);
         }
     }
 }

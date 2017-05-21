@@ -15,11 +15,13 @@ import java.util.List;
 public class ItemDAO {
 
     private final PreparedStatement opListarPedido;
+    private final PreparedStatement opListarDono;
     private final PreparedStatement opBuscaPorItemPedido;
     
     public ItemDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
         opListarPedido = conexao.prepareStatement("SELECT pedido, SUM(valor) as valorTotal FROM Item GROUP BY pedido");
+        opListarDono = conexao.prepareStatement("SELECT dono, SUM(valor) as valorTotal FROM Item GROUP BY dono");
         opBuscaPorItemPedido = conexao.prepareStatement("SELECT * FROM Item WHERE pedido = ?");
         
     }
@@ -72,5 +74,24 @@ public class ItemDAO {
         }
     } 
     
-    
+    public List<Item> listByDono() throws Exception {
+        try {
+            List<Item> pedidosDono = new ArrayList<>();
+
+            ResultSet resultado = opListarDono.executeQuery();
+
+            while (resultado.next()) {
+                Item novoItem = new Item();
+
+                novoItem.setDono(resultado.getString("dono"));
+                novoItem.setValor(resultado.getFloat("valorTotal"));
+                pedidosDono.add(novoItem);
+            }
+
+            return pedidosDono;
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao listar os pedidos no banco!", ex);
+        }
+    }
 }
