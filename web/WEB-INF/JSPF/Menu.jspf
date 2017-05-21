@@ -5,7 +5,7 @@
 <ul>
     <li><a href="listarPedido.html">Listar Pedido</a></li>
     <li><a href="listarDono.html">Listar Dono</a></li>
-    <li><a href="listarItens.html">Listar Itens</a></li>
+    <li><a href="listarItem.html">Listar Item</a></li>
     <li><a href="novo.html">Novo</a></li>
     
 </ul>
