@@ -25,6 +25,7 @@
                 <th>Valor</th>
                 <th>Nome</th>
                 <th>Atualização</th>
+                <th>Editar Itens</th>
                 </tr>
             </thead>    
             <tbody>
@@ -36,6 +37,7 @@
                     <td>${Itenspedido.valor}</td>
                     <td>${Itenspedido.nome}</td>
                     <td>${Itenspedido.atualizacao}</td>
+                    <td><a href="Edita.html?id=${Itenspedido.id}">---X---</a></td>
                 </tr>
                 </c:forEach>
             </tbody>
