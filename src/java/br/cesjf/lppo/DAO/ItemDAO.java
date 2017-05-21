@@ -19,6 +19,7 @@ public class ItemDAO {
     private final PreparedStatement opBuscaPorItemPedido;
     private final PreparedStatement opAtualiza;
     private final PreparedStatement opBuscaPorItens;
+    private final PreparedStatement opNovo;
     
     public ItemDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
@@ -27,6 +28,7 @@ public class ItemDAO {
         opBuscaPorItemPedido = conexao.prepareStatement("SELECT * FROM Item WHERE pedido = ?");
         opAtualiza = conexao.prepareStatement("UPDATE Item SET Pedido = ?, Dono = ?, Valor=?, Nome=? WHERE id = ?");
         opBuscaPorItens = conexao.prepareStatement("SELECT * FROM Item WHERE id = ?");
+        opNovo = conexao.prepareStatement("INSERT INTO Item(Pedido, Dono, Valor, Nome) VALUES(?,?,?,?)");
     }
     
     public List<Item> listByPedido() throws Exception {
@@ -136,4 +138,16 @@ public class ItemDAO {
         }
     }
 
+    public void cria(Item novoItem) throws Exception {
+        try {
+            opNovo.clearParameters();
+            opNovo.setInt(1, novoItem.getPedido());
+            opNovo.setString(2, novoItem.getDono());
+            opNovo.setFloat(3, novoItem.getValor());
+            opNovo.setString(4, novoItem.getNome());
+            opNovo.executeUpdate();
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao inserir novo Pedido!", ex);
+        }
+    }
 }

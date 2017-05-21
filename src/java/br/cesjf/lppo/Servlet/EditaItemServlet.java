@@ -63,7 +63,7 @@ public class EditaItemServlet extends HttpServlet {
             pedido.setNome(request.getParameter("nome"));
 
             dao.atualiza(pedido);
-            response.sendRedirect("listarItemPedido.html?pedido=" + id);
+            response.sendRedirect("listarItemPedido.html?pedido=" + pedido.getPedido());
 
         } catch (NumberFormatException e) {
             response.sendRedirect("listarItemPedido.html");
