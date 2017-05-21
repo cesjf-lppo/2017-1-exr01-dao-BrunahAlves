@@ -26,7 +26,7 @@
             <tbody>
                 <c:forEach var="pedido" items="${pedidos}">    
                 <tr>
-                    <td>${pedido.pedido}</td>
+                    <td><a href="listarItemPedido.html?pedido=${pedido.pedido}" value="${pedido.pedido}">${pedido.pedido}</a></td>
                     <td>${pedido.valor}</td>
                 </tr>
                 </c:forEach>

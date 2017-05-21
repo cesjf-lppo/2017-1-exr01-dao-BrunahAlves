@@ -15,11 +15,12 @@ import java.util.List;
 public class ItemDAO {
 
     private final PreparedStatement opListarPedido;
+    private final PreparedStatement opBuscaPorItemPedido;
     
     public ItemDAO() throws Exception {
         Connection conexao = ConnectionFactory.createConnection();
         opListarPedido = conexao.prepareStatement("SELECT pedido, SUM(valor) as valorTotal FROM Item GROUP BY pedido");
-        
+        opBuscaPorItemPedido = conexao.prepareStatement("SELECT * FROM Item WHERE pedido = ?");
         
     }
     
@@ -33,7 +34,6 @@ public class ItemDAO {
                 Item novoItem = new Item();
 
                 novoItem.setPedido(resultado.getInt("pedido"));
-
                 novoItem.setValor(resultado.getFloat("valorTotal"));
                 pedidos.add(novoItem);
             }
@@ -44,5 +44,33 @@ public class ItemDAO {
             throw new Exception("Erro ao listar os pedidos no banco!", ex);
         }
     }
+    
+    public List<Item> listByItensPedido(Integer pedido) throws Exception {
+        try {
+            List<Item> itenspedido = new ArrayList<>();
+            
+            
+            opBuscaPorItemPedido.setInt(1, pedido);
+            ResultSet resultado = opBuscaPorItemPedido.executeQuery();
+
+            while (resultado.next()) {
+                Item itemPedido = new Item();
+
+                itemPedido.setId(resultado.getLong("id"));
+                itemPedido.setPedido(resultado.getInt("pedido"));
+                itemPedido.setDono(resultado.getString("dono"));
+                itemPedido.setValor(resultado.getFloat("valor"));
+                itemPedido.setNome(resultado.getString("nome"));
+                itemPedido.setAtualizacao(resultado.getTimestamp("atualizacao"));
+                itenspedido.add(itemPedido);
+            }
+
+            return itenspedido;
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao listar os pedidos no banco!", ex);
+        }
+    } 
+    
     
 }
