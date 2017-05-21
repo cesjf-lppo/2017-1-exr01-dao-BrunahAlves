@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Lista de Pedidos!</h1>
         <%@include file="JSPF/Menu.jspf" %>
         <h1>Lista de Pedidos</h1>
         <div style="color: red;">${mensagem}</div>

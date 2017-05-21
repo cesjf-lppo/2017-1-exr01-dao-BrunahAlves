@@ -3,10 +3,9 @@
 <nav>
 <h2>Pedidos!</h2>
 <ul>
-    <li><a href="listarPedido.html">Listar Pedido</a></li>
-    <li><a href="listarDono.html">Listar Dono</a></li>
-    <li><a href="listarItem.html">Listar Item</a></li>
-    <li><a href="novo.html">Novo</a></li>
+    <li><a href="Novo.html">Novo Item</a></li>
+    <li><a href="listaPedido.html">Listar Pedido</a></li>
+    <li><a href="listaDono.html">Listar Dono</a></li>
     
 </ul>
 </nav>
