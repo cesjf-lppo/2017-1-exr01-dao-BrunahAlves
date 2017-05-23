@@ -3,9 +3,11 @@
     Created on : 21/05/2017, 11:32:53
     Author     : Bruna Alves
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,7 +37,8 @@
                     <td>${Itenspedido.dono}</td>
                     <td>${Itenspedido.valor}</td>
                     <td>${Itenspedido.nome}</td>
-                    <td>${Itenspedido.atualizacao}</td>
+                    <td><fmt:formatDate value="${Itenspedido.atualizacao}" pattern="dd/MM/yyyy HH:mm"/></td>
+                    
                     <td><a href="Edita.html?id=${Itenspedido.id}">---X---</a></td>
                 </tr>
                 </c:forEach>

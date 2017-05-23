@@ -26,7 +26,7 @@ public class ItemDAO {
         opListarPedido = conexao.prepareStatement("SELECT pedido, SUM(valor) as valorTotal FROM Item GROUP BY pedido");
         opListarDono = conexao.prepareStatement("SELECT dono, SUM(valor) as valorTotal FROM Item GROUP BY dono");
         opBuscaPorItemPedido = conexao.prepareStatement("SELECT * FROM Item WHERE pedido = ?");
-        opAtualiza = conexao.prepareStatement("UPDATE Item SET Pedido = ?, Dono = ?, Valor=?, Nome=? WHERE id = ?");
+        opAtualiza = conexao.prepareStatement("UPDATE Item SET Pedido = ?, Dono = ?, Valor=?, Nome=?, atualizacao=CURRENT_TIMESTAMP WHERE id = ?");
         opBuscaPorItens = conexao.prepareStatement("SELECT * FROM Item WHERE id = ?");
         opNovo = conexao.prepareStatement("INSERT INTO Item(Pedido, Dono, Valor, Nome) VALUES(?,?,?,?)");
     }
